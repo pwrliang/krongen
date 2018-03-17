@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
     }
 
 
-    printf("graph info: scale:%d edge_factor:%d %s output:%s",
+    printf("graph info: scale:%d edge_factor:%d %s output:%s\n",
            FLAGS_scale, FLAGS_edge_factor, FLAGS_directed ? "directed" : "undirected", FLAGS_output.data());
 
     make_graph(log_numverts, desired_nedges, 1, 2, &nedges, &result);
