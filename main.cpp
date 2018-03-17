@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-    std::set<std::pair<int, int>> edges;
+    std::set<std::pair<int64_t, int64_t>> edges;
 
     for (int64_t k = 0; k < nedges; ++k) {
         const int64_t i = get_v0_from_edge(&result[k]);
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
     printf("num_verts:%d, desired_edges:%lld num_edges:%lu\n", nverts, (long long) desired_nedges, edges.size());
 
     for (const auto &edge : edges) {
-        fprintf(fp, "%d %d", edge.first, edge.second);
+        fprintf(fp, "%lld %lld\n",(long long) edge.first, (long long)edge.second);
     }
 
     free(result);
