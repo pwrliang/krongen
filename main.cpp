@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     }
 
     printf("num_verts:%d, desired_edges:%lld num_edges:%lu\n", nverts, (long long) desired_nedges, edges.size());
-    printf("writing...");
+    printf("writing...\n");
 
     for (const auto &edge : edges) {
         fprintf(fp, "%lld %lld\n", (long long) edge.first, (long long) edge.second);
@@ -52,6 +52,6 @@ int main(int argc, char **argv) {
 
     free(result);
     fclose(fp);
-    printf("write operation done");
+    printf("write operation done\n");
     return 0;
 }
