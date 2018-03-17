@@ -20,13 +20,17 @@ int main(int argc, char **argv) {
     int64_t nedges;
     packed_edge *result;
 
-    make_graph(log_numverts, desired_nedges, 1, 2, &nedges, &result);
-
     FILE *fp = fopen(FLAGS_output.data(), "w");
     if (fp == nullptr) {
         printf("CAN NOT OPEN %s\n", FLAGS_output.data());
         exit(1);
     }
+
+
+    printf("graph info: scale:%d edge_factor:%d %s output:%s",
+           FLAGS_scale, FLAGS_edge_factor, FLAGS_directed ? "directed" : "undirected", FLAGS_output.data());
+
+    make_graph(log_numverts, desired_nedges, 1, 2, &nedges, &result);
 
     std::set<std::pair<int64_t, int64_t>> edges;
 
@@ -37,15 +41,17 @@ int main(int argc, char **argv) {
         edges.insert({i, j});
         if (!FLAGS_directed)
             edges.insert({j, i});
-//        fprintf(fp, "%d %d", i, j);
     }
 
     printf("num_verts:%d, desired_edges:%lld num_edges:%lu\n", nverts, (long long) desired_nedges, edges.size());
+    printf("writing...");
 
     for (const auto &edge : edges) {
-        fprintf(fp, "%lld %lld\n",(long long) edge.first, (long long)edge.second);
+        fprintf(fp, "%lld %lld\n", (long long) edge.first, (long long) edge.second);
     }
 
     free(result);
     fclose(fp);
+    printf("write operation done");
+    return 0;
 }
