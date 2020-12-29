@@ -49,6 +49,8 @@ int main(int argc, char **argv) {
 
   make_graph(log_numverts, desired_nedges, 1, 2, &nedges, &result);
 
+  printf("generated, copying...\n");
+
   std::vector<std::unordered_set<int64_t>> edges;
 
   edges.resize(nverts);
